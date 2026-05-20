@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>520 · 给孟先生</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: "STKaiti", "KaiTi", "Microsoft YaHei", sans-serif;
+      color: #fff;
+      background: #090713;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cinema-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.65), transparent 28%, transparent 72%, rgba(0,0,0,.75)),
+        radial-gradient(circle at 18% 18%, rgba(255, 171, 196, .42), transparent 26%),
+        radial-gradient(circle at 82% 72%, rgba(157, 121, 255, .28), transparent 34%),
+        linear-gradient(135deg, #100817 0%, #21112b 42%, #070712 100%);
+      animation: bgMove 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgMove {
+      from { transform: scale(1); filter: brightness(.95); }
+      to { transform: scale(1.06); filter: brightness(1.12); }
+    }
+
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .16;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.75) 1px, transparent 1px);
+      background-size: 38px 38px;
+      animation: grain 2.5s steps(4) infinite;
+    }
+
+    @keyframes grain {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(-8px, 6px); }
+      50% { transform: translate(5px, -7px); }
+      75% { transform: translate(7px, 5px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .letterbox::before,
+    .letterbox::after {
+      content: "";
+      position: fixed;
+      left: 0;
+      width: 100%;
+      height: 9vh;
+      background: rgba(0,0,0,.72);
+      z-index: 5;
+    }
+
+    .letterbox::before { top: 0; }
+    .letterbox::after { bottom: 0; }
+
+    .scene {
+      position: relative;
+      z-index: 3;
+      width: min(86vw, 680px);
+      text-align: center;
+      padding: 58px 26px;
+      animation: fadeIn 2s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .subtitle {
+      font-size: 14px;
+      letter-spacing: 7px;
+      color: rgba(255,255,255,.72);
+      margin-bottom: 26px;
+      animation: softAppear 2.2s ease both;
+    }
+
+    .name {
+      font-size: clamp(40px, 10vw, 76px);
+      font-weight: 400;
+      letter-spacing: 8px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 24px rgba(255, 180, 205, .45), 0 8px 30px rgba(0,0,0,.5);
+      animation: glow 3.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 18px rgba(255, 180, 205, .35), 0 8px 30px rgba(0,0,0,.5); }
+      to { text-shadow: 0 0 34px rgba(255, 215, 226, .75), 0 8px 36px rgba(0,0,0,.55); }
+    }
+
+    .line {
+      width: 0;
+      max-width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: clamp(22px, 5.4vw, 36px);
+      line-height: 1.95;
+      letter-spacing: 2px;
+      border-right: 2px solid rgba(255,255,255,.8);
+      text-shadow: 0 4px 18px rgba(0,0,0,.42);
+      animation: typing 3.2s steps(22) 1.2s forwards, cursor .8s step-end infinite;
+    }
+
+    .line.two {
+      animation: typing 3.4s steps(24) 4.5s forwards, cursor .8s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes cursor {
+      50% { border-color: transparent; }
+    }
+
+    .ending {
+      margin-top: 40px;
+      font-size: 15px;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,.68);
+      opacity: 0;
+      animation: softAppear 2s ease 7.6s forwards;
+    }
+
+    @keyframes softAppear {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -40px;
+      color: rgba(255, 225, 235, .75);
+      font-size: 18px;
+      animation: floatUp linear infinite;
+      z-index: 2;
+      text-shadow: 0 0 18px rgba(255,255,255,.65);
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(.7) rotate(0deg); opacity: 0; }
+      18% { opacity: .75; }
+      100% { transform: translateY(-112vh) scale(1.35) rotate(18deg); opacity: 0; }
+    }
+
+    .tap {
+      position: fixed;
+      bottom: 12vh;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,.55);
+      animation: softAppear 2s ease 8.4s forwards;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="cinema-bg"></div>
+  <div class="film-grain"></div>
+  <div class="letterbox"></div>
+
+  <main class="scene">
+    <div class="subtitle">520 · ONLY FOR YOU</div>
+    <h1 class="name">孟先生</h1>
+    <div class="line">今天比昨天更喜欢你</div>
+    <div class="line two">希望可以一直站在你身边</div>
+    <div class="ending">愿我们把平凡日子，过成只属于彼此的电影</div>
+  </main>
+
+  <div class="tap">♡  LOVE  NEVER  ENDS  ♡</div>
+
+  <script>
+    const hearts = ["❤", "♡", "✦", "·"];
+    for (let i = 0; i < 45; i++) {
+      const el = document.createElement("div");
+      el.className = "heart";
+      el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.animationDuration = 7 + Math.random() * 9 + "s";
+      el.style.animationDelay = Math.random() * 8 + "s";
+      el.style.fontSize = 10 + Math.random() * 24 + "px";
+      document.body.appendChild(el);
+    }
+  </script>
+</body>
+</html>
